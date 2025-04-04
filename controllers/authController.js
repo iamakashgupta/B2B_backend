@@ -1,5 +1,5 @@
 // backend/controllers/authController.js
-const User = require("../models/User");
+const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
 exports.register = async (req, res) => {

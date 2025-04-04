@@ -1,6 +1,6 @@
 // backend/controllers/itemController.js
 const Item = require("../models/Item");
-const User = require("../models/User");
+const User = require("../models/user");
 
 // Create (donate) item
 exports.createItem = async (req, res) => {

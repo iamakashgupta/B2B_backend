@@ -1,5 +1,5 @@
 // backend/controllers/leaderboardController.js
-const User = require("../models/User");
+const User = require("../models/user");
 
 // GET: Leaderboard - Top Donators
 exports.getLeaderboard = async (req, res) => {
