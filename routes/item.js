@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Item = require('../models/Item'); // Adjust the path as necessary
+const Item = require('../models/Item');
 
 // Claim an item
 router.put('/claim/:productId', async (req, res) => {

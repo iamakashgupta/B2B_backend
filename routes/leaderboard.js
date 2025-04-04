@@ -1,19 +1,21 @@
 const express = require('express');
-const User = require('../models/user');
-
 const router = express.Router();
+const User = require('../models/User');
+const Item = require('../models/Item');
 
+// Get leaderboard
 router.get('/', async (req, res) => {
   try {
-    const topUsers = await User.find()
-      .sort({ barterCoins: -1 })
-      .limit(10)
-      .select('username barterCoins');
+    const users = await User.find();
+    const leaderboard = await Promise.all(users.map(async (user) => {
+      const claimedItems = await Item.countDocuments({ claimedBy: user._id });
+      return { username: user.username, claimedItems };
+    }));
 
-    res.json(topUsers);
+    leaderboard.sort((a, b) => b.claimedItems - a.claimedItems);
+    res.status(200).json(leaderboard);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Error fetching leaderboard' });
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 

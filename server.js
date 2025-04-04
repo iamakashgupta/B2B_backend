@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const leaderboardRoutes = require('./routes/leaderboard');
+const claimRoutes = require('./routes/claim');
+const ecoMeterRoutes = require('./routes/ecoMeter');
 dotenv.config();
 
 const app = express();
@@ -19,7 +21,8 @@ app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/products', productRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/items", itemRoutes);
-app.use("/api/leaderboard", leaderboardRoutes);
+app.use('/api/claims', claimRoutes); // Added claim routes
+app.use('/api/eco', ecoMeterRoutes); // Added ecoMeter routes
 
 // 🔗 MongoDB Connection
 mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/backtobarter", {

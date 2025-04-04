@@ -5,7 +5,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   barterCoins: { type: Number, default: 0 },
-claimedItems: { type: Number, default: 0 },
+  claimedItems: { type: Number, default: 0 },
 });
 
-module.exports = mongoose.model("User", userSchema);
+// ✅ Prevent OverwriteModelError on hot reload
+module.exports = mongoose.models.User || mongoose.model("User", userSchema);
