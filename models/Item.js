@@ -22,6 +22,7 @@ const itemSchema = new mongoose.Schema({
     type: Number,
     default: 1, // used for price inflation model later
   },
+  barterCoins: { type: Number, required: true },
 }, { timestamps: true });
 
 module.exports = mongoose.model("Item", itemSchema);
