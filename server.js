@@ -22,12 +22,13 @@ app.use("/api/items", itemRoutes);
 app.use("/api/leaderboard", leaderboardRoutes);
 
 // 🔗 MongoDB Connection
-mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/backtobarter", {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 })
-.then(() => console.log("MongoDB connected ✅"))
-.catch(err => console.error("MongoDB connection failed ❌", err));
+.then(() => console.log('Connected to MongoDB Atlas!'))
+.catch(err => console.error('MongoDB connection error:', err));
+
 
 // 🚀 Server Listen
 const PORT = process.env.PORT || 5000;
