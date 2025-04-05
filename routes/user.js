@@ -39,4 +39,19 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.get('/:id/ecometer', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    
+    const ecoMeter = Math.min(user.ecoPoints, 100);
+    res.status(200).json({ 
+      ecoPoints: user.ecoPoints,
+      ecoMeter 
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching eco meter' });
+  }
+});
+
 module.exports = router;

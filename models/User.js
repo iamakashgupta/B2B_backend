@@ -6,6 +6,15 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   barterCoins: { type: Number, default: 0 },
   claimedItems: { type: Number, default: 0 },
+  ecoPoints: {
+    type: Number,
+    default: 0
+  },  
+  tradeCount: {
+    type: Number,
+    default: 0
+  }
+  
 });
 
 // ✅ Prevent OverwriteModelError on hot reload
